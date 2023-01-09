@@ -6,9 +6,9 @@ const deleteBtnFunc = () => {
 
     deleteBtns.forEach((deleteBtn, index) => {
         deleteBtn.addEventListener('click', async (e) => {
-
+            console.log(deleteBtn);
             const btn = e.delegateTarget;
-            const {url} = btn.dataset;
+            const { url } = btn.dataset;
 
             confirmationBtn.disabled = true;
             confirmationBtn.dataset.url = '';
@@ -31,7 +31,7 @@ const deleteBtnFunc = () => {
     });
 
     confirmationBtn.addEventListener('click', async (e) => {
-        const {url} = confirmationBtn.dataset;
+        const { url } = confirmationBtn.dataset;
 
         confirmationBtn.disabled = true;
         confirmationLoader.previousElementSibling.style.display = 'none';
@@ -48,7 +48,8 @@ const deleteBtnFunc = () => {
             .then(response => {
                 confirmationLoader.classList.toggle('d-none');
                 closeModal.click()
-                let row = document.getElementById(`${response.id}`);
+                let row = document.getElementById(`${response.pk}`);
+                console.log(response);
                 row.parentElement.remove();
                 window.location.reload()
             });
